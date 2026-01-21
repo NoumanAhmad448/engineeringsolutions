@@ -9,18 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.2.9",
+    "bootstrap": "^5.3.8",
+    "flatpickr": "^4.6.13",
+    "font-awesome": "^4.7.0",
+    "jquery-ui-dist": "^1.13.3",
     "next": "16.1.4",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sortablejs": "^1.15.6"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
-    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

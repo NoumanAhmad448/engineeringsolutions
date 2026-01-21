@@ -1,26 +1,97 @@
-@import "tailwindcss";
+/* globals.css */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Smooth dropdown animation */
+.animate-dropdown {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  display: block;
+  pointer-events: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dropdown-menu.show.animate-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Dropdown item hover effect */
+.dropdown-item {
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(13, 110, 253, 0.08); /* bootstrap primary */
+  transform: translateX(4px);
+}
+
+
+/* Force dark text/icons on white navbar */
+.navbar.bg-white {
+  --bs-navbar-color: #000;
+  --bs-navbar-hover-color: #0d6efd;
+  --bs-navbar-active-color: #0d6efd;
+  --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.navbar.bg-white .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+
+.navbar-nav .nav-link {
+  position: relative;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: #0d6efd;
+  transition: width 0.25s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+
+  .navbar-collapse {
+    margin-top: 1rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+.top-info-bar {
+  font-size: 14px;
+  padding: 6px 0;
+}
+
+.top-info-bar i {
+  color: #fff; /* white icons */
+}
+
+.top-info-bar .btn {
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.top-info-bar .list-inline-item span {
+  color: #fff; /* white text for contact info */
 }
