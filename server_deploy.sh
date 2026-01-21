@@ -36,6 +36,9 @@ nvm use $NODE_VERSION
 # Navigate to app directory
 cd "$APP_DIR" || exit 1
 
+# Where am I?
+pwd
+
 # Optional: clean node_modules & cache (useful on fresh install or major upgrades)
 # rm -rf node_modules package-lock.json
 # npm cache clean --force
@@ -51,7 +54,18 @@ npm run build
 
 # Start Next.js in production mode
 # Depending on hosting, you may use `npm start` or PM2 to run it as a daemon
-npm run start &
+npm install -g pm2
+pm2 -v
+
+pm2 start npm --name "engineeringsolutions" -- start
+pm2 list
+pm2 save
+pm2 startup
+
+pm2 logs engineeringsolutions
+pm2 stop engineeringsolutions
+
+pm2 restart engineeringsolutions
 
 # Secure .env file
 if [ -f "$APP_DIR/.env" ]; then
