@@ -9,18 +9,15 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Models\Student as CrmStudent;
-use App\Observers\CrmStudentObserver;
-use App\Models\EnrolledCourse;
-use App\Observers\EnrolledCourseObserver;
-use App\Models\Inquiry;
-use App\Models\Profile;
 use App\Models\User;
-use App\Observers\InquiryObserver;
-use App\Observers\ProfileObserver;
+use App\Models\Course;
+use App\Observers\CourseObserver;
 use App\Observers\UserObserver;
-use App\Models\EnrolledCoursePayment;
-use App\Observers\EnrolledCoursePaymentObserver;
+use App\Models\Category;
+use App\Observers\CategoryObserver;
+use App\Models\CourseDetail;
+use App\Observers\CourseDetailObserver;
+
 
 
 class AppServiceProvider extends ServiceProvider
@@ -48,14 +45,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-        // Factory::factoryForModel(CronJobs::class, CronJobsFactory::class);
-        CrmStudent::observe(CrmStudentObserver::class);
-        EnrolledCourse::observe(EnrolledCourseObserver::class);
-        Inquiry::observe(InquiryObserver::class);
-        Profile::observe(ProfileObserver::class);
         User::observe(UserObserver::class);
-        EnrolledCoursePayment::observe(EnrolledCoursePaymentObserver::class);
+        Category::observe(CategoryObserver::class);
+        Course::observe(CourseObserver::class);
+        CourseDetail::observe(CourseDetailObserver::class);
+
+
 
 
         try {

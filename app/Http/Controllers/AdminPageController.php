@@ -161,4 +161,8 @@ class AdminPageController extends Controller
             return back()->with('error', "unable to process it".config("app.debug") ? $th->getMessage(): "");
         }
     }
+
+    public function dashboard(){
+        return view("admin.dashboard");
+    }
 }
