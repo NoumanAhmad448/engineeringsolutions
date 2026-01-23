@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CourseLogController;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\JobApplicationController;
 
 $route = Route::prefix("admin");
@@ -89,4 +90,22 @@ $route->group(function () {
     Route::get('/job-applications', [JobApplicationController::class, 'adminIndex'])
         ->name('job_app_admin');
 
+    // Admin
+    Route::get('/internship-applications', [InternshipController::class, 'appIndex'])
+        ->name("internshp_application.admin");
+
+    Route::get('/internships', [InternshipController::class, 'index'])
+        ->name('internships.index');
+
+    Route::post('/internships', [InternshipController::class, 'store'])
+        ->name('internships.store');
+
+    Route::get('/internships/{internship}/edit', [InternshipController::class, 'edit'])
+        ->name('internships.edit');
+
+    Route::put('/internships/{internship}', [InternshipController::class, 'update'])
+        ->name('internships.update');
+
+    Route::delete('/internships/{internship}', [InternshipController::class, 'destroy'])
+        ->name('internships.destroy');
 });

@@ -115,5 +115,14 @@ $(function () {
     }
   });
 });
+$(document).ready(function () {
+  $('.nav-item.dropdown').hover(function () {
+    $(this).addClass('show');
+    $(this).find('.dropdown-menu').first().addClass('show');
+  }, function () {
+    $(this).removeClass('show');
+    $(this).find('.dropdown-menu').first().removeClass('show');
+  });
+});
 /******/ })()
 ;

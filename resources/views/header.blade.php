@@ -81,44 +81,34 @@
 
         <div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
             <ul class="navbar-nav d-flex flex-row gap-3">
-
-                {{-- Trainings Dropdown --}}
                 <li class="nav-item dropdown">
                     <a
                         class="nav-link dropdown-toggle text-black"
                         href="#"
                         role="button"
-                        data-bs-toggle="dropdown"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
                         aria-expanded="false"
                     >
                         Trainings
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 animate-dropdown">
+                   <ul class="dropdown-menu dropdown-menu-right shadow-lg border-0 animate-dropdown scrollable-dropdown">
                         <li class="dropdown-header text-uppercase small text-muted">
                             Trainings
                         </li>
 
                         <li><hr class="dropdown-divider"></li>
 
-                        <li>
-                            <a class="dropdown-item fw-semibold py-2" href="/trainings/web">
-                                Web Development
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item fw-semibold py-2" href="/trainings/mobile">
-                                Mobile Development
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item fw-semibold py-2" href="/trainings/cloud">
-                                Cloud & DevOps
-                            </a>
-                        </li>
+                        @foreach(\App\Models\Category::latest()->get() as $category)
+                            <li>
+                                <a class="dropdown-item fw-semibold py-2" href="/trainings/{{ $category->slug ?? 'web' }}">
+                                    {{ $category->name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
+
                 </li>
 
                 {{-- Blogs --}}
@@ -132,18 +122,29 @@
                         class="nav-link dropdown-toggle text-black"
                         href="#"
                         role="button"
-                        data-bs-toggle="dropdown"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
                         aria-expanded="false"
                     >
                         Contact
                     </a>
 
-                    <ul class="dropdown-menu animate-dropdown">
+                    <ul class="dropdown-menu dropdown-menu-right shadow-lg border-0 animate-dropdown scrollable-dropdown">
+                        <li class="dropdown-header text-uppercase small text-muted">
+                            Contact
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
                         <li>
-                            <a class="dropdown-item" href="/contact/general">General</a>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('job_app_get') }}">
+                                Apply For Job
+                            </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/contact/support">Support</a>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('internship_apply_get') }}">
+                                Apply For Internship
+                            </a>
                         </li>
                     </ul>
                 </li>

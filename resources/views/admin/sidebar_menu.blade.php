@@ -5,19 +5,31 @@
             'title' => 'Courses',
             'icon' => 'fa-book',
             'route' => route('admin.course.index'),
-            'access_roles' => ['admin'],
+            'access_roles' => [],
         ],
         [
             'title' => 'Categories',
             'icon' => 'fa-tags',
             'route' => route('admin.category.index'),
-            'access_roles' => ['admin'],
+            'access_roles' => [],
         ],
         [
             'title' => 'Job Applications',
             'icon' => 'fa-tags',
             'route' => route('job_app_admin'),
-            'access_roles' => ['admin'],
+            'access_roles' => [],
+        ],
+        [
+            'title' => 'Internship Applications',
+            'icon' => 'fa-tags',
+            'route' => route('internshp_application.admin'),
+            'access_roles' => [],
+        ],
+        [
+            'title' => 'Manage Internship',
+            'icon' => 'fa-tags',
+            'route' => route('internships.index'),
+            'access_roles' => [],
         ],
 
         [
@@ -38,7 +50,7 @@
 @endphp
 
 @foreach ($menuItems as $index => $item)
-    @if (in_array(auth()->user()->role, $item['access_roles']) || auth()->user()->is_admin)
+    @if (empty($item['access_roles']) ? true : in_array(auth()->user()->role, $item['access_roles']) || auth()->user()->is_admin)
         <li class="nav-item text-center px-3">
             <!-- Loader -->
             <div class="py-3 menu-loader{{ $index }} d-none">
