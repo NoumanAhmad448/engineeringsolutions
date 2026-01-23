@@ -3,55 +3,100 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Add + Listing (Same Page)
+     */
+    public function index()
     {
-        $type = $request->get("type");
-        if($type == "deleted"){
-            $courses = Course::where('is_deleted', 1)->get();
-        }else{
-            $courses = Course::where('is_deleted', 0)->get();
+        $courses = Course::latest()->get();
+$categories = Category::all();
+
+        return view('admin.courses.index', compact('courses', "categories"));
+    }
+
+    private function formDate($course, $request)
+    {
+         $course->course_type          = $request->course_type;
+        $course->course_title         = $request->course_title;
+        $course->time_selection       = $request->time_selection;
+        $course->learnable_skill      = $request->learnable_skill;
+        $course->course_requirement   = "$request->course_requirement";
+        $course->targeting_student    = "$request->targeting_student";
+        $course->description          = "$request->description";
+        $course->status               = $request->status;
+        $course->isPopular            = $request->isPopular ?? 0;
+        $course->rating               = $request->rating ?? 0;
+        $course->duration             = $request->duration;
+        $course->price                = $request->price;
+        $course->has_video_lectures   = $request->has_video_lectures ?? 0;
+        $course->has_online_session   = $request->has_online_session ?? 0;
+        $course->language             = $request->language;
+        $course->user_id              = auth()->id();
+        $course->slug                 = Str::slug($request->course_title);
+        $course->category_id                 = $request->category_id;
+
+        // IMAGE (YOUR CONVENTION)
+        if ($request->hasFile('image')) {
+            $course->image = uploadPhoto($request->file('image'));
         }
-        return view('admin.courses.index', compact('courses', "type"));
+        return $course;
     }
 
-    public function store(Request $request)
+    /**
+     * Store New Course
+     */
+    public function store(CourseRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'fee'  => 'required|numeric|min:1'
-        ]);
+       $request->validated();
+       $course = new Course();
 
-        Course::create($request->only('name', 'fee', 'description'));
+       $course = $this->formDate($course,$request);
 
-        return back()->with('success', 'Course added');
+        $course->save();
+
+        return back()->with('success', 'Course added successfully');
     }
 
-    public function edit($id)
+    /**
+     * Edit Page (Separate)
+     */
+    public function edit(Course $course)
     {
-        $course = Course::findOrFail($id);
-        return view('admin.courses.edit', compact('course'));
+        $categories = Category::withTrashed()->get();
+        return view('admin.courses.edit', compact('course', "categories"));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update Course
+     */
+    public function update(CourseRequest $request, Course $course)
     {
-        $request->validate([
-            'name' => 'required',
-            'fee'  => 'required|numeric|min:1'
-        ]);
+        $request->validated();
 
-        Course::where('id', $id)->update($request->only('name', 'fee', 'description'));
+       $course = $this->formDate($course,$request);
 
-        return redirect()->route('courses.index')->with('success', 'Course updated');
+        $course->save();
+
+        return redirect()
+            ->route('admin.course.index')
+            ->with('success', 'Course updated successfully');
     }
 
-    public function delete($id)
+    /**
+     * Soft Delete (Admin Only)
+     */
+    public function destroy(Course $course)
     {
-        Course::where('id', $id)->update(['is_deleted' => 1]);
-        return back()->with('success', 'Course deleted');
+        $course->delete();
+
+        return back()->with('success', 'Course deleted successfully');
     }
 }

@@ -1,4 +1,4 @@
-@extends('admin.admin_main')
+@extends('header')
 @section('page-css')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>

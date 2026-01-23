@@ -3,20 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    protected $table = 'crm_courses';
+    use SoftDeletes;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'fee',
-        'is_deleted',
-    ];
+    protected $table = 'courses';
 
-    public function enrolledCourses()
+    protected $guarded = []; // 👈 allows ALL keys
+
+    // Course.php
+    public function details()
     {
-        return $this->hasMany(EnrolledCourse::class);
+        return $this->hasMany(CourseDetail::class);
+    }
+
+    public function detailLogs()
+    {
+        return $this->hasMany(CourseDetailLog::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

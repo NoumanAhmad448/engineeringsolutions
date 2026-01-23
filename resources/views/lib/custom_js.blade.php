@@ -15,7 +15,7 @@
 
                 index++;
 
-                setTimeout(showNextItem, 1000); // 2 seconds
+                setTimeout(showNextItem, 50); // 2 seconds
 
             } else {}
         }
