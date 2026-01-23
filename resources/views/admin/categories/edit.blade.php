@@ -9,6 +9,9 @@
     @include("messages")
 
 
+    <a href="{{ route('admin.category.index') }}" class="btn btn-secondary my-2">
+    Back to Category
+</a>
     <div class="form-group">
         <label>Name</label>
         <input type="text"
@@ -33,6 +36,9 @@
     </div>
 
     <button class="btn btn-success">Update</button>
+    <a href="{{ route('admin.category.index') }}" class="btn btn-secondary my-2">
+        Back to Category
+    </a>
 </form>
 
 @endsection

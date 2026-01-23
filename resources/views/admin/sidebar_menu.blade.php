@@ -5,14 +5,18 @@
             'title' => 'Courses',
             'icon' => 'fa-book',
             'route' => route('admin.course.index'),
-            'img' => 'courses.png',
             'access_roles' => ['admin'],
         ],
         [
             'title' => 'Categories',
             'icon' => 'fa-tags',
             'route' => route('admin.category.index'),
-            'img' => 'categories.png',
+            'access_roles' => ['admin'],
+        ],
+        [
+            'title' => 'Job Applications',
+            'icon' => 'fa-tags',
+            'route' => route('job_app_admin'),
             'access_roles' => ['admin'],
         ],
 
@@ -20,7 +24,6 @@
             'title' => 'Users',
             'icon' => 'fa-users',
             'route' => route('admin.user.index'),
-            'img' => 'deleted_users.png',
             'access_roles' => ['admin'],
         ],
 
@@ -29,7 +32,6 @@
             'icon' => 'fa-user-times',
             'route' => route('admin.user.index', ['type' => 'deleted']),
             'access_roles' => ['admin'],
-            'img' => 'deleted_users.png',
         ],
     ];
 

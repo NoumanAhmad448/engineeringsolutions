@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\CategoryLogController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CourseLogController;
+use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\JobApplicationController;
 
 $route = Route::prefix("admin");
 
@@ -81,4 +83,10 @@ $route->group(function () {
         'admin/course-detail/{detail}',
         [CourseDetailController::class, 'delete']
     )->name('courses.details.destroy');
+
+    Route::post('/upload-image', [ImageUploadController::class, 'upload'])->name('upload.image');
+
+    Route::get('/job-applications', [JobApplicationController::class, 'adminIndex'])
+        ->name('job_app_admin');
+
 });

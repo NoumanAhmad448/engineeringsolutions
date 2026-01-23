@@ -41,9 +41,12 @@
 <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.6/js/dataTables.buttons.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.1/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.1/dist/summernote-lite.min.js" defer></script>
 {{-- Red Alert  css/text.css must comes in the end always --}}
 <link rel="stylesheet" href="{{ asset('css/text.css') }}">
 {{-- this must comes in the end always --}}

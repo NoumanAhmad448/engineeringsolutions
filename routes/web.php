@@ -27,6 +27,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CreateSubAdminController;
 use App\Http\Controllers\InstructorPayment;
 use App\Http\Controllers\InstructorPaymentController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\OfflinePaymentController;
 use App\Http\Controllers\PaymentController;
@@ -279,6 +280,10 @@ require __DIR__ . '/certificate.php';
 require __DIR__ . '/hr.php';
 require __DIR__ . '/user.php';
 require __DIR__.'/cron_jobs.php';
+
+
+Route::get('/job-applications', [JobApplicationController::class, 'index'])->name("job_app_get");
+Route::post('/job-applications', [JobApplicationController::class, 'store'])->name("job_app_post");
 
 
 Route::get('/register', function () {
