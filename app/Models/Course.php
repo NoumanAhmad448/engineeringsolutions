@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -26,5 +27,37 @@ class Course extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($course) {
+            $course->slug = self::generateSlug($course);
+        });
+
+        static::updating(function ($course) {
+            if ($course->isDirty('name') || is_null($course->slug)) {
+                $course->slug = self::generateSlug($course);
+            }
+        });
+    }
+
+    private static function generateSlug($course)
+    {
+        $baseSlug = Str::slug($course->course_title);
+        $slug = $baseSlug;
+        $count = 1;
+
+        while (
+            self::where('slug', $slug)
+            ->when($course->id, fn($q) => $q->where('id', '!=', $course->id))
+            ->exists()
+        ) {
+            $slug = $baseSlug . '-' . $count++;
+        }
+
+        return $slug;
     }
 }

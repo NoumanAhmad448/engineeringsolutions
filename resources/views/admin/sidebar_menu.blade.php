@@ -31,6 +31,24 @@
             'route' => route('internships.index'),
             'access_roles' => [],
         ],
+        [
+            'title' => 'Webinar Applications',
+            'icon' => 'fa-tags',
+            'route' => route('admin.webinar_applications.index'),
+            'access_roles' => [],
+        ],
+        [
+            'title' => 'Manage Webinars',
+            'icon' => 'fa-tags',
+            'route' => route('admin.webinar.index'),
+            'access_roles' => [],
+        ],
+        [
+            'title' => 'Ambassador Applications',
+            'icon' => 'fa-tags',
+            'route' => route('admin.ambassador.index'),
+            'access_roles' => [],
+        ],
 
         [
             'title' => 'Users',
@@ -50,7 +68,9 @@
 @endphp
 
 @foreach ($menuItems as $index => $item)
-    @if (empty($item['access_roles']) ? true : in_array(auth()->user()->role, $item['access_roles']) || auth()->user()->is_admin)
+    @if (empty($item['access_roles'])
+            ? true
+            : in_array(auth()->user()->role, $item['access_roles']) || auth()->user()->is_admin)
         <li class="nav-item text-center px-3">
             <!-- Loader -->
             <div class="py-3 menu-loader{{ $index }} d-none">

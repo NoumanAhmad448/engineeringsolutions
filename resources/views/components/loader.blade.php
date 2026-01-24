@@ -1,14 +1,10 @@
-@php
-    $status_pad = $prop['status_pad'] ?? '';
-    $svg_w = $prop['width'] ?? 'w-8';
-    $svg_h = $prop['h'] ?? 'h-8';
-    $id = $prop['id'] ?? '';
-    debug_logs('inside loader component');
-    debug_logs($prop);
+@props([
+    "message" => "Loading ..."
+])
 
-@endphp
-@if ($id)
-    <section class="{{ $id }}loader">
-        @include(config('files.svg') . 'loader', ['prop' => $prop])
-    </section>
-@endif
+<div class="dot-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<p class="mt-2">{{ $message }}</p>

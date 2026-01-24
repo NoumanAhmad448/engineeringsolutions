@@ -42,17 +42,20 @@
                                 <label>Upload CV (PDF / Image) *</label>
                                 @include('file', ['name' => 'cv'])
                             </div>
+                            @if (app()->environment(config('app.live_env')))
+                                {
 
-                            {{-- Google reCAPTCHA --}}
-                            <div class="form-group mt-3">
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
-                                @error('g-recaptcha-response')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                {{-- Google reCAPTCHA --}}
+                                <div class="form-group mt-3">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                    @error('g-recaptcha-response')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            @endif
 
                             <button class="btn btn-primary mt-3">
                                 Submit Application

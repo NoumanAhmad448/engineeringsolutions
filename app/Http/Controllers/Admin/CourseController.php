@@ -17,14 +17,14 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->get();
-$categories = Category::all();
+        $categories = Category::all();
 
         return view('admin.courses.index', compact('courses', "categories"));
     }
 
     private function formDate($course, $request)
     {
-         $course->course_type          = $request->course_type;
+        $course->course_type          = $request->course_type;
         $course->course_title         = $request->course_title;
         $course->time_selection       = $request->time_selection;
         $course->learnable_skill      = $request->learnable_skill;
@@ -40,7 +40,6 @@ $categories = Category::all();
         $course->has_online_session   = $request->has_online_session ?? 0;
         $course->language             = $request->language;
         $course->user_id              = auth()->id();
-        $course->slug                 = Str::slug($request->course_title);
         $course->category_id                 = $request->category_id;
 
         // IMAGE (YOUR CONVENTION)
@@ -55,10 +54,10 @@ $categories = Category::all();
      */
     public function store(CourseRequest $request)
     {
-       $request->validated();
-       $course = new Course();
+        $request->validated();
+        $course = new Course();
 
-       $course = $this->formDate($course,$request);
+        $course = $this->formDate($course, $request);
 
         $course->save();
 
@@ -81,7 +80,7 @@ $categories = Category::all();
     {
         $request->validated();
 
-       $course = $this->formDate($course,$request);
+        $course = $this->formDate($course, $request);
 
         $course->save();
 
@@ -98,5 +97,16 @@ $categories = Category::all();
         $course->delete();
 
         return back()->with('success', 'Course deleted successfully');
+    }
+
+    public function show($slug)
+    {
+        $course = Course::where('slug', $slug)
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        $course->load('details');
+
+        return view('courses.show', compact('course'));
     }
 }

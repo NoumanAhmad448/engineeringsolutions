@@ -38,12 +38,12 @@
             <div class="col d-flex justify-content-center" style="min-width: 459px;">
                 <ul class="list-inline mb-0 d-flex gap-4">
                     <li class="list-inline-item d-flex align-items-center gap-2">
-                        <i class="fa fa-phone"></i>
+                        <i class="fa fa-phone mr-1"></i>
                         <span>0317-1170280 | 0317-1170281</span>
                     </li>
 
                     <li class="list-inline-item d-flex align-items-center gap-2">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-envelope mr-1"></i>
                         <span>burraq@burraq.org</span>
                     </li>
                 </ul>
@@ -102,7 +102,7 @@
 
                         @foreach(\App\Models\Category::latest()->get() as $category)
                             <li>
-                                <a class="dropdown-item fw-semibold py-2" href="/trainings/{{ $category->slug ?? 'web' }}">
+                                <a class="dropdown-item fw-semibold py-2" href={{ route("categories.show", ["slug" => $category->slug ?? 'web']) }}>
                                     {{ $category->name }}
                                 </a>
                             </li>
@@ -114,6 +114,11 @@
                 {{-- Blogs --}}
                 <li class="nav-item">
                     <a class="nav-link text-black" href="/blogs">Blogs</a>
+                </li>
+
+                {{-- Studetn Verificaton --}}
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="{{ route("certificate.verify.form") }}">Student Verification</a>
                 </li>
 
                 {{-- Contact Dropdown --}}
@@ -146,6 +151,16 @@
                                 Apply For Internship
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('webinar.apply') }}">
+                                Apply For Webinar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('ambassador.apply') }}">
+                                Become Our Ambassador
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -169,46 +184,40 @@
                 placeholder="Search Course"
                 aria-label="Search"
             >
-            <button class="btn btn-dark rounded-pill" type="submit">
-                Search
+            <button class="btn btn-dark rounded-pill ml-1" type="submit">
+                <span class="fa fa-search"> </span>
             </button>
             </form>
 
         </div>
 
-        <div class="col-md-3">
 
-            <div class="d-md-flex align-items-md-center justify-content-md-end">
-                @if (Route::has('login'))
-                    @auth
-                        <div class="dropdown mx-3">
-                            @if (config('setting.login_profile'))
-                                <div class="cursor_pointer text-center  pt-2" id="user_menu" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <img height="40" width="40" class="rounded-circle object-cover"
-                                        src="@include('modals.profile_logo')" alt="{{ Auth::user()->name }}" />
-                                </div>
-                            @endif
-                              <div class="dropdown-menu dropdown-menu-right  w-55 mr-4 border" aria-labelledby="user_menu">
-                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('logout') }}">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-                                        </a>
-                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin_dashboard') }}">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Dashboard
-                                        </a>
-                              </div>
+        <div class="d-md-flex align-items-md-center justify-content-md-end">
+            @if (Route::has('login'))
+                @auth
+                    <div class="dropdown mx-3">
+                        @if (config('setting.login_profile'))
+                            <div class="cursor_pointer text-center  pt-2" id="user_menu" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img height="40" width="40" class="rounded-circle object-cover"
+                                    src="@include('modals.profile_logo')" alt="{{ Auth::user()->name }}" />
                             </div>
-                    @else
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('login') }}" class="btn btn-info mr-1 mt-3">Log in</a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="btn btn-outline-info mt-3">{{ __('homepage.instructor.title') }}</a>
-                            @endif
+                        @endif
+                            <div class="dropdown-menu dropdown-menu-right  w-55 mr-4 border" aria-labelledby="user_menu">
+                                    <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="/user_logout">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                                    </a>
+                                    <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.course.index') }}">
+                                        <i class="fa fa-book" aria-hidden="true"></i> Courses
+                                    </a>
+                            </div>
                         </div>
-                    @endif
+                @else
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('login') }}" class="btn btn-info mr-1 mt-3">Log in</a>
+                    </div>
                 @endif
-            </div>
+            @endif
         </div>
 </nav>
 
@@ -222,7 +231,7 @@
             </div>
         </div>
     </div>
-    @yield('footer')
+    @include('admin.footer')
 </body>
 
 </html>
