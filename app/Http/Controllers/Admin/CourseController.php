@@ -40,7 +40,6 @@ class CourseController extends Controller
         $course->has_online_session   = $request->has_online_session ?? 0;
         $course->language             = $request->language;
         $course->user_id              = auth()->id();
-        $course->slug                 = Str::slug($request->course_title);
         $course->category_id                 = $request->category_id;
 
         // IMAGE (YOUR CONVENTION)

@@ -20,6 +20,7 @@
         </div>
 
         {{-- COURSES --}}
+        <h1>All Courses</h1>
         <div id="category-courses" class="row"></div>
 
     </div>
