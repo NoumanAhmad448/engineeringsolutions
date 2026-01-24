@@ -1,6 +1,7 @@
 <?php
 
 use App\Features\GuestFeatures;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CourseController;
@@ -25,6 +26,9 @@ use App\Http\Controllers\BloggerFaqController;
 use App\Http\Controllers\BloggerPostController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CreateSubAdminController;
+use App\Http\Controllers\Frontend\AmbassadorController;
+use App\Http\Controllers\CertificateVerificationController as CertVer;
+use App\Http\Controllers\Frontend\WebinarController;
 use App\Http\Controllers\InstructorPayment;
 use App\Http\Controllers\InstructorPaymentController;
 use App\Http\Controllers\InternshipController;
@@ -273,14 +277,14 @@ require __DIR__ . '/admin_page.php';
 require __DIR__ . '/cron_job.php';
 require __DIR__ . '/assignment.php';
 require __DIR__ . '/categories_controller.php';
-require __DIR__.'/student.php';
-require __DIR__.'/courses.php';
-require __DIR__.'/student_courses.php';
-require __DIR__.'/inquiries.php';
+require __DIR__ . '/student.php';
+require __DIR__ . '/courses.php';
+require __DIR__ . '/student_courses.php';
+require __DIR__ . '/inquiries.php';
 require __DIR__ . '/certificate.php';
 require __DIR__ . '/hr.php';
 require __DIR__ . '/user.php';
-require __DIR__.'/cron_jobs.php';
+require __DIR__ . '/cron_jobs.php';
 
 
 Route::get('/job-applications', [JobApplicationController::class, 'index'])->name("job_app_get");
@@ -292,6 +296,35 @@ Route::get('/internships/apply', [InternshipController::class, 'create'])
 
 Route::post('/internships/apply', [InternshipController::class, 'appStore'])
     ->name('internship.store');
+
+Route::get('/webinars/apply', [WebinarController::class, 'index'])
+    ->name('webinar.apply');
+
+Route::post('/webinars/apply', [WebinarController::class, 'store'])
+    ->name('webinar.store');
+
+
+// Frontend
+Route::get('/ambassadors/apply', [AmbassadorController::class, 'index'])
+    ->name('ambassador.apply');
+
+Route::post('/ambassadors/apply', [AmbassadorController::class, 'store'])
+    ->name('ambassador.store');
+
+// Show the verification page (and optionally display results if ?key= is provided)
+Route::get('/certificate-verify', [CertVer::class, 'index'])
+    ->name('certificate.verify.form');
+
+Route::get('/ajax/categories', [CategoryController::class, 'ajaxCategories'])->name('ajax.categories');
+
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])
+    ->name('categories.show');
+
+Route::get('/ajax/category-courses/{categoryId}', [CategoryController::class, 'courses'])
+    ->name('ajax.category.courses');
+
+Route::get('/course/{slug}', [App\Http\Controllers\Admin\CourseController::class, 'show'])
+    ->name('course.show');
 
 
 Route::get('/register', function () {
@@ -305,5 +338,3 @@ Route::post('/register', function () {
 if (trim(config('app.env')) == config("setting.roles.dev")) {
     URL::forceScheme(config("setting.http"));
 }
-
-

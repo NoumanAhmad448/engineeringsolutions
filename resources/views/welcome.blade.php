@@ -30,37 +30,10 @@
             </div>
 
             {{-- Course cards --}}
-            <div class="row justify-content-center g-4">
-                @foreach ($courses as $course)
-                    <div class="col-md-4">
-                        <div class="card h-100 text-center shadow-sm border-0">
-
-                            {{-- Image --}}
-                            <img src="{{ asset($course->image) }}" alt="{{ $course->title }}" class="card-img-top"
-                                width="400" height="300">
-
-                            {{-- Body --}}
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-semibold">
-                                    {{ $course->title }}
-                                </h5>
-
-                                <p class="card-text text-muted">
-                                    {{ $course->description }}
-                                </p>
-
-                                {{-- Button --}}
-                                <div class="mt-auto">
-                                    <a href="{{ url('/courses/' . $course->slug) }}" class="btn btn-outline-primary btn-sm">
-                                        All Courses
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                @endforeach
+            <div id="categories" class="loader-container text-center my-5">
+                <x-loader message="Loading Categories ..."/>
             </div>
+
 
         </div>
     </section>
@@ -244,4 +217,35 @@
         </div>
     </section>
 
+@endsection
+
+
+@section("page-js")
+<script>
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+
+    $.ajax({
+        url: "{{ route('ajax.categories') }}",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#categories').html(data.html);
+
+            // Hover animation for cards
+            $('#categories .hover-shadow').hover(
+                function() { $(this).css('transform', 'translateY(-5px) scale(1.05)'); },
+                function() { $(this).css('transform', 'translateY(0) scale(1)'); }
+            );
+        },
+        error: function(err) {
+            console.error(err);
+        }
+    });
+});
+</script>
 @endsection

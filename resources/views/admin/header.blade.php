@@ -76,7 +76,8 @@
             </div>
         </div>
     </div>
-    @yield('footer')
+    @include('admin.footer')
+
 </body>
 
 </html>

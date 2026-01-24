@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AmbassadorController;
 use App\Http\Controllers\AdminPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Admin\CategoryLogController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CourseLogController;
+use App\Http\Controllers\Admin\WebinarApplicationController;
+use App\Http\Controllers\Admin\WebinarController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\JobApplicationController;
@@ -108,4 +111,28 @@ $route->group(function () {
 
     Route::delete('/internships/{internship}', [InternshipController::class, 'destroy'])
         ->name('internships.destroy');
+
+    Route::get('/webinars', [WebinarController::class, 'index'])
+        ->name('admin.webinar.index');
+
+    Route::post('/webinars', [WebinarController::class, 'store'])
+        ->name('admin.webinar.store');
+
+    Route::get('/webinars/{webinar}/edit', [WebinarController::class, 'edit'])
+        ->name('admin.webinar.edit');
+
+    Route::put('/webinars/{webinar}', [WebinarController::class, 'update'])
+        ->name('admin.webinar.update');
+
+    Route::delete('/webinars/{webinar}', [WebinarController::class, 'destroy'])
+        ->name('admin.webinar.delete');
+
+
+    // Applications
+    Route::get('/webinar-applications', [WebinarApplicationController::class, 'index'])
+        ->name('admin.webinar_applications.index');
+
+    // Admin
+    Route::get('/admin/ambassadors', [AmbassadorController::class, 'index'])
+        ->name('admin.ambassador.index');
 });

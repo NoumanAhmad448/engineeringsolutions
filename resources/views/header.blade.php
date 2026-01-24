@@ -116,6 +116,11 @@
                     <a class="nav-link text-black" href="/blogs">Blogs</a>
                 </li>
 
+                {{-- Studetn Verificaton --}}
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="{{ route("certificate.verify.form") }}">Student Verification</a>
+                </li>
+
                 {{-- Contact Dropdown --}}
                 <li class="nav-item dropdown">
                     <a
@@ -144,6 +149,16 @@
                         <li>
                             <a class="dropdown-item fw-semibold py-2" href="{{ route('internship_apply_get') }}">
                                 Apply For Internship
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('webinar.apply') }}">
+                                Apply For Webinar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fw-semibold py-2" href="{{ route('ambassador.apply') }}">
+                                Become Our Ambassador
                             </a>
                         </li>
                     </ul>
@@ -190,21 +205,17 @@
                                 </div>
                             @endif
                               <div class="dropdown-menu dropdown-menu-right  w-55 mr-4 border" aria-labelledby="user_menu">
-                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('logout') }}">
+                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="/user_logout">
                                             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
                                         </a>
-                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin_dashboard') }}">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Dashboard
+                                        <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.course.index') }}">
+                                            <i class="fa fa-book" aria-hidden="true"></i> Courses
                                         </a>
                               </div>
                             </div>
                     @else
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('login') }}" class="btn btn-info mr-1 mt-3">Log in</a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="btn btn-outline-info mt-3">{{ __('homepage.instructor.title') }}</a>
-                            @endif
                         </div>
                     @endif
                 @endif
@@ -222,7 +233,7 @@
             </div>
         </div>
     </div>
-    @yield('footer')
+    @include('admin.footer')
 </body>
 
 </html>

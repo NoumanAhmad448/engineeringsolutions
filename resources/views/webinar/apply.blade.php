@@ -2,16 +2,15 @@
 
 @section('content')
     <div class="container my-5">
-        @include('messages')
-        <div class="row justify-content-center">
+        @include('messages') <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <div class="card shadow-sm">
                     <div class="card-header text-center font-weight-bold">
-                        Apply for Internship
+                        Apply for Webinar
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('internship.store') }}">
+                        <form method="POST" action="{{ route('webinar.store') }}">
                             @csrf
 
                             <div class="form-group">
@@ -30,26 +29,24 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Internship Applied For</label>
-                                <select name="internship_id" class="form-control" required>
-                                    <option value=""> -- Select Internship -- </option>
-                                    @foreach ($internships as $internship)
-                                        <option value="{{ $internship->id }}">
-                                            {{ $internship->name }}
+                                <label>Webinar Applied For</label>
+                                <select name="webinar_id" class="form-control" required>
+                                    <option value=""> -- Select Webinar -- </option>
+                                    @foreach ($webinars as $webinar)
+                                        <option value="{{ $webinar->id }}">
+                                            {{ $webinar->name }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            @if (app()->environment(config('app.live_env')))
-                                {
-                                {{-- Google captcha (enable when required) --}}
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
-                                @error('g-recaptcha-response')
-                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            @endif
+                    @if (app()->environment(config("app.live_env"))) {
+                            {{-- Google captcha (enable when required) --}}
+                        {!! NoCaptcha::renderJs() !!}
+                        {!! NoCaptcha::display() !!}
+                        @error('g-recaptcha-response')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                       @endif
 
                             <button class="btn btn-primary btn-block">
                                 Submit Application
