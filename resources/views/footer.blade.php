@@ -1,5 +1,5 @@
 <div class="container-fluid text-center py-3">
-    <footer class="footer-bg mt-auto text-center">
+    <footer class="footer bg-primary mt-auto text-center">
         <div class="container-fluid">
             @if(false)
             <div class="row pt-2 pt-md-5">

@@ -48,8 +48,6 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev -
 # For ENV file testing
 # yes | composer require --dev phpunit/phpunit
 
-# yes | php artisan db:seed --class=LanguageSeeder
-
 # Avoid any node permission error
 sudo chown -R root:root /home/nomilyskills/public_html/solutions.burraqengineering.com/
 
@@ -58,6 +56,10 @@ sudo chown -R root:root /home/nomilyskills/public_html/solutions.burraqengineeri
 
 # Run database migrations
 yes | php artisan migrate --force
+
+
+# yes | php artisan db:seed --class=LanguageSeeder
+yes | php artisan db:seed --class=JobTitleSeeder
 
 # Clear caches
 php artisan cache:clear && php artisan config:clear && php artisan route:clear

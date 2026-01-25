@@ -60,4 +60,11 @@ class Course extends Model
 
         return $slug;
     }
+
+    public function scopeActiveCourse($course){
+        return $course->where("status", "active");
+    }
+    public function scopePopularCourse($course){
+        return $course->activeCourse()->where("isPopular", 1)->orWhere("isFeatured", 1);
+    }
 }

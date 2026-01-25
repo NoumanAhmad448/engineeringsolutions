@@ -1,17 +1,17 @@
 @extends('header')
 
 @section('content')
-    <div class="container my-5">
-        @include('messages')
-        <div class="row justify-content-center">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="card shadow-sm">
-                        <div class="card-header text-center font-weight-bold">
-                            Ambassador Application
-                        </div>
+    <x-company_info_container title="Enroll Now">
 
-                        <div class="card-body">
+        <div class="container-fluid my-5">
+            @include('messages')
+            <div class="h1">
+                Ambassador Application
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
                             <form method="POST" enctype="multipart/form-data" action="{{ route('ambassador.store') }}">
                                 @csrf
 
@@ -36,5 +36,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
-    @endsection
+    </x-company_info_container>
+@endsection

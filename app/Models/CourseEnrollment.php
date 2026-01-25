@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseEnrollment extends Model
 {
-    use HasFactory;
-    protected $fillable = ['course_id','user_id'];
+    protected $table = 'crm_course_enrollments';
 
-    public function user(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'country',
+        'course_id',
+    ];
 
     public function course()
     {
-        return $this->belongsTo(Course::class,'course_id','id');
+        return $this->belongsTo(Course::class);
     }
-
 }

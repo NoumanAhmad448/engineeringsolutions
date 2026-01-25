@@ -789,3 +789,89 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
     40% { transform: translateX(15px); opacity: 1; }
 }
 
+
+.enroll-wrapper .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.enroll-wrapper .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+.category-image-wrapper {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-image-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.category-image {
+    width: 100%; /* ensures fluid inside wrapper */
+    height: auto;
+    display: block;
+}
+
+.category-image-wrapper:hover {
+    cursor: pointer;
+}
+
+/* Category Header Background */
+.category-header {
+    background-color: #046bd2; /* light blue background */
+    transition: background-color 0.3s ease;
+}
+
+/* Image Hover Effects */
+.category-image-wrapper {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-image-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure image stays responsive */
+.category-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.category-image-wrapper {
+    padding: 5px;
+}
+.category-header {
+    background: linear-gradient(135deg, #90caf9, #046bd2);
+}
+
+.payment-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.payment-img {
+    width: 100px; /* make circle bigger if needed */
+    height: 100px;
+    -o-object-fit: cover;
+       object-fit: cover; /* keeps image ratio and fills circle */
+    border: 3px solid #fff; /* optional white border around circle */
+    padding: 5px; /* optional spacing inside card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-card:hover .payment-img {
+    transform: scale(1.1); /* slightly enlarge on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+

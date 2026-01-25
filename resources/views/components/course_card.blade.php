@@ -26,10 +26,14 @@
                 {{ $course->price ? show_payment($course->price) : 'Free' }}
             </li>
         </ul>
+        <div class="d-flex">
+            <a href="{{ route('course.show', $course->slug) }}" class="btn btn-primary btn-sm w-50">
+                View Course
+            </a>
+            <a href="{{ route('enroll.index', ['slug' => $course->slug]) }}"
+                class="btn btn-outline-primary btn-sm w-50 ml-1">Enroll Now</a>
+        </div>
 
-        <a href="{{ route('course.show', $course->slug) }}" class="btn btn-primary btn-sm w-100">
-            View Course
-        </a>
     </div>
 
 </div>

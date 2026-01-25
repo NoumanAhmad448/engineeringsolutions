@@ -1,15 +1,17 @@
 @extends('header')
 
 @section('content')
-    <div class="container my-5">
-        @include('messages') <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card shadow-sm">
-                    <div class="card-header text-center font-weight-bold">
-                        Apply for Webinar
-                    </div>
+    <x-company_info_container title="Enroll Now">
 
-                    <div class="card-body">
+        <div class="container-fluid my-5">
+            <div class="row justify-content-center">
+                <div class="card-body">
+                    <div class="col-md-12 col-lg-12">
+                        @include('messages')
+
+                        <div class="h1">
+                            Apply for Webinar
+                        </div>
                         <form method="POST" action="{{ route('webinar.store') }}">
                             @csrf
 
@@ -39,14 +41,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                    @if (app()->environment(config("app.live_env"))) {
-                            {{-- Google captcha (enable when required) --}}
-                        {!! NoCaptcha::renderJs() !!}
-                        {!! NoCaptcha::display() !!}
-                        @error('g-recaptcha-response')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                        @enderror
-                       @endif
+                            @if (app()->environment(config('app.live_env')))
+                                {
+                                {{-- Google captcha (enable when required) --}}
+                                {!! NoCaptcha::renderJs() !!}
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            @endif
 
                             <button class="btn btn-primary btn-block">
                                 Submit Application
@@ -56,5 +59,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </x-company_info_container>
 @endsection

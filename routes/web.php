@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Frontend\BootcampController;
 use App\Http\Controllers\CourseEx2Controller;
 use App\Http\Controllers\CourseEx3Controller;
 use App\Http\Controllers\VideoController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CreateSubAdminController;
 use App\Http\Controllers\Frontend\AmbassadorController;
 use App\Http\Controllers\CertificateVerificationController as CertVer;
+use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\Frontend\WebinarController;
 use App\Http\Controllers\InstructorPayment;
 use App\Http\Controllers\InstructorPaymentController;
@@ -42,6 +44,7 @@ use App\Http\Controllers\SetttingController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\StoreUserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserAnnController;
 use App\Http\Controllers\WithdrawPaymentController;
 use App\Http\Livewire\AdminController as LivewireAdminController;
@@ -326,6 +329,19 @@ Route::get('/ajax/category-courses/{categoryId}', [CategoryController::class, 'c
 Route::get('/course/{slug}', [App\Http\Controllers\Admin\CourseController::class, 'show'])
     ->name('course.show');
 
+Route::get('team/list', [TeamController::class, 'teamList'])
+    ->name('team.list');
+
+
+Route::get('enroll/{slug?}', [EnrollController::class, 'index'])
+->name('enroll.index');
+
+Route::post('enroll', [EnrollController::class, 'store'])
+    ->name('enroll.store');
+
+Route::get('courses/search', [App\Http\Controllers\Admin\CourseController::class, 'search'])->name('courses.search');
+
+Route::get('/bootcamp', [BootcampController::class, 'bootcamp'])->name('bootcamp');
 
 Route::get('/register', function () {
     return redirect()->route('login');

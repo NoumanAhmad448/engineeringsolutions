@@ -104,42 +104,11 @@
                 </div>
             </div>
 
-            {{-- Leaders row --}}
-            @if ($leaders && count($leaders) > 0)
-                <div class="row justify-content-center mb-4">
-                    @foreach ($leaders as $member)
-                        <div class="col-md-4 col-lg-3 mb-4">
-                            <div class="card border-0 shadow-sm text-center h-100">
-                                <img src="{{ asset($member['image']) }}" alt="{{ $member['name'] }}" width="200"
-                                    height="200" class="rounded-circle mt-3 mx-auto">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-semibold">{{ $member['name'] }}</h5>
-                                    <p class="card-text text-muted">{{ $member['title'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
+            <div class="loader-container" id="team-result">
+                <x-loader message="Loading Team Member ..." />
+            </div>
 
-            {{-- Rest of the team --}}
-            @if ($others && count($others) > 0)
-                <div class="row justify-content-center">
-                    @foreach ($others as $member)
-                        <div class="col-md-3 col-lg-2 mb-4">
-                            <div class="card border-0 shadow-sm text-center h-100">
-                                <img src="{{ asset($member['image']) }}" alt="{{ $member['name'] }}" width="150"
-                                    height="150" class="rounded-circle mt-3 mx-auto">
-                                <div class="card-body">
-                                    <h6 class="card-title fw-semibold">{{ $member['name'] }}</h6>
-                                    <p class="card-text text-muted">{{ $member['title'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-        </div>
+         </div>
     </section>
     <section class="py-5 bg-primary">
         <div class="container">
@@ -246,6 +215,26 @@ $(document).ready(function() {
             console.error(err);
         }
     });
+});
+
+
+function loadTeam() {
+
+    $.ajax({
+        url: "/team/list",
+        type: "GET",
+        success: function (html) {
+            $("#team-result").html(html);
+        },
+        error: function () {
+            alert("Failed to load team");
+        }
+    });
+}
+
+$(document).ready(function() {
+
+loadTeam();
 });
 </script>
 @endsection

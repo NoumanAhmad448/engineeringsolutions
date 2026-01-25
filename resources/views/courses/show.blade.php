@@ -13,40 +13,52 @@
                 <div class="course-highlights mb-5">
 
                     {{-- LEARNABLE SKILLS --}}
-                    @if($course->learnable_skill)
-                        <div class="highlight-box mb-4">
-                            <h5 class="highlight-title">
-                                <i class="fa fa-check-circle text-success"></i>
-                                Learnable Skills
-                            </h5>
-                            <div class="highlight-content">
-                                {!! $course->learnable_skill !!}
+                    @if ($course->learnable_skill)
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="highlight-box mb-4">
+                                    <h5 class="highlight-title">
+                                        <i class="fa fa-check-circle text-success"></i>
+                                        Learnable Skills
+                                    </h5>
+                                    <div class="highlight-content">
+                                        {!! $course->learnable_skill !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif
 
                     {{-- COURSE REQUIREMENTS --}}
-                    @if($course->course_requirement)
-                        <div class="highlight-box mb-4">
-                            <h5 class="highlight-title">
-                                <i class="fa fa-list-ul text-primary"></i>
-                                Course Requirements
-                            </h5>
-                            <div class="highlight-content">
-                                {!! $course->course_requirement !!}
+                    @if ($course->course_requirement)
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="highlight-box mb-4">
+                                    <h5 class="highlight-title">
+                                        <i class="fa fa-list-ul text-primary"></i>
+                                        Course Requirements
+                                    </h5>
+                                    <div class="highlight-content">
+                                        {!! $course->course_requirement !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif
 
                     {{-- TARGETING STUDENT --}}
-                    @if($course->targeting_student)
-                        <div class="highlight-box mb-4">
-                            <h5 class="highlight-title">
-                                <i class="fa fa-user-graduate text-warning"></i>
-                                Targeting Student
-                            </h5>
-                            <div class="highlight-content">
-                                {!! $course->targeting_student !!}
+                    @if ($course->targeting_student)
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="highlight-box mb-4">
+                                    <h5 class="highlight-title">
+                                        <i class="fa fa-user-graduate text-warning"></i>
+                                        Targeting Student
+                                    </h5>
+                                    <div class="highlight-content">
+                                        {!! $course->targeting_student !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -54,7 +66,7 @@
                 </div>
 
                 {{-- DESCRIPTION --}}
-                <div class="course-description mb-4">
+                <div class="course-description my-4">
                     <h4 class="mb-3">Course Description</h4>
                     {!! $course->description !!}
                 </div>
@@ -65,7 +77,8 @@
                     @foreach ($course->details as $key => $detail)
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#detail{{ $key }}">
+                                <button class="btn btn-link" data-toggle="collapse"
+                                    data-target="#detail{{ $key }}">
                                     {{ $detail->title }}
                                 </button>
                             </div>
@@ -152,7 +165,8 @@
                                     <strong>Featured Course</strong>
                                 </li>
                             @endif
-                            <a href="#" class="btn btn-success btn-block">Enroll Now</a>
+                            <a href="{{ route('enroll.index', ['slug' => $course->slug]) }}"
+                                class="my-2 btn btn-success btn-block">Enroll Now</a>
                         </ul>
                     </div>
                 </div>

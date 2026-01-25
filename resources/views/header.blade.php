@@ -30,7 +30,7 @@
         <div class="row align-items-center">
 
             <div class="col d-flex justify-content-start">
-                <a href="/bootcamp" class="btn btn-sm btn-light fw-semibold text-primary">
+                <a href="{{ route("bootcamp") }}" class="btn btn-sm btn-light fw-semibold text-primary">
                     Bootcamps
                 </a>
             </div>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="col d-flex justify-content-end">
-                <a href="/contact" class="btn btn-sm btn-light fw-semibold text-primary">
+                <a href="{{ route("enroll.index")  }}" class="btn btn-sm btn-light fw-semibold text-primary">
                     Enroll Now
                 </a>
             </div>
@@ -176,7 +176,7 @@
 
         {{-- Search (replace React component) --}}
         <div class="d-flex align-items-center">
-            <form class="d-flex" role="search" method="GET" action="#">
+            <form class="d-flex" role="search" method="GET" action="{{ route('courses.search') }}">
             <input
                 class="form-control me-2 rounded-pill"
                 type="search"
@@ -213,8 +213,8 @@
                             </div>
                         </div>
                 @else
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ route('login') }}" class="btn btn-info mr-1 mt-3">Log in</a>
+                    <div class="d-flex justify-content-end align-content-center ml-1">
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary mr-1 rounded-pill">Log in</a>
                     </div>
                 @endif
             @endif

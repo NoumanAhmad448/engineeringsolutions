@@ -11,6 +11,20 @@ use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q'); // search input
+
+        $courses = \App\Models\Course::where('course_title', 'like', '%' . $q . '%')
+            ->activeCourse()
+            ->orderBy('course_title')
+            ->get();
+
+        // Return view with courses
+        return view('courses.search_results', compact('courses', 'q'));
+    }
+
     /**
      * Add + Listing (Same Page)
      */
