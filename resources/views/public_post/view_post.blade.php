@@ -1,4 +1,4 @@
-@extends(config('setting.guest_blade'))
+@extends("header")
 @section('page-css')
     <style>
         a {
@@ -24,7 +24,7 @@
                         <li class="breadcrumb-item" aria-current="page"> {{ $post->slug }}</li>
                     </ol>
                 </nav>
-                <img src="{{ config('setting.s3Url') . $post->upload_img }}" alt="{{ $post->f_name }}"
+                <img src="{{ img_path($post->upload_img) }}" alt="{{ $post->f_name }}"
                     class="w-100 img-fluid mb-4">
             </div>
             <div class="col-md-8 offset-md-2">

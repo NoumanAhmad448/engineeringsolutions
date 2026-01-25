@@ -1,4 +1,4 @@
-@extends(config('setting.guest_blade'))
+@extends("header")
 
 @section('content')
     <div class="container-fluid">
@@ -18,7 +18,7 @@
                 <div class="row my-5">
                     <div class="col-md-4 offset-md-2">
                         <a href="{{ route('public_posts', ['slug' => $post->slug]) }}"> <img id="post-img" class=""
-                                width="" height="" src="{{ config('setting.s3Url') . $post->upload_img }}" />
+                                width="" height="" src="{{ img_path($post->upload_img) }}" />
                         </a>
                     </div>
                     <div class="col-md-5 d-flex align-items-center flex-column">

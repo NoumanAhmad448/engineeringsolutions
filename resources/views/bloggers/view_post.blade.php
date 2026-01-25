@@ -1,4 +1,4 @@
-@extends('bloggers.blogger_main')
+@extends('admin.admin_main')
 @section('page-css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/text.css') }}">
@@ -9,7 +9,7 @@
         Posts
     </h1>
     <div class="d-flex justify-content-end">
-        <a href="{{ route('blogger_c_p') }}" class="btn btn-lg btn-info"><i class="fa fa-pencil-square-o"
+        <a href="{{ route('blogger_c_p') }}" class="btn btn-lg btn-primary"><i class="fa fa-pencil-square-o"
                 aria-hidden="true"></i>
             Create Post
         </a>

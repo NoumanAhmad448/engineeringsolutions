@@ -1,4 +1,4 @@
-@extends('bloggers.blogger_main')
+@extends('admin.admin_main')
 @section('page-css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
@@ -7,7 +7,7 @@
 @section('content')
     <h1> Edit Post </h1>
     <div class="d-flex justify-content-end">
-        <a href="{{ route('blogger_v_p') }}" class="btn btn-lg btn-info"> View Posts </a>
+        <a href="{{ route('blogger_v_p') }}" class="btn btn-lg btn-primary"> View Posts </a>
     </div>
 
     @include('session_msg')
@@ -30,18 +30,18 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <img src="{{ config('setting.s3Url') . $post->upload_img }}" alt="lyskills" width="100" height="50"
+        <img src="{{ img_path($post->upload_img) }}" alt="lyskills" width="100" height="50"
             class="img-fluid mb-1 img" />
         <div class="form-group">
             <input type="file" class="d-none" id="upload_img" name="upload_img" onchange="readURL(this)">
-            <label class="btn btn-info" for="upload_img"> <i class="fa fa-upload" aria-hidden="true"></i> Upload Image
+            <label class="btn btn-primary" for="upload_img"> <i class="fa fa-upload" aria-hidden="true"></i> Upload Image
             </label>
             @error('upload_img')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-lg btn-info">
+        <button type="submit" class="btn btn-lg btn-primary">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Update Post
         </button>
     </form>
