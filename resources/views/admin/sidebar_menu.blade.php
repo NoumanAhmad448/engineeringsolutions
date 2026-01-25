@@ -1,117 +1,222 @@
 @php
+$menuGroups = [
+    [
+        'title' => 'Courses',
+        'icon'  => 'fa-book',
+        'items' => [
+            [
+                'title' => 'Courses',
+                'route' => route('admin.course.index'),
+                'icon'  => 'fa-book',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Categories',
+                'route' => route('admin.category.index'),
+                'icon'  => 'fa-tags',
+                'access_roles' => [],
+            ],
+        ],
+    ],
 
-    $menuItems = [
-        [
-            'title' => 'Courses',
-            'icon' => 'fa-book',
-            'route' => route('admin.course.index'),
-            'access_roles' => [],
+    [
+        'title' => 'Team & Users',
+        'icon'  => 'fa-users',
+        'items' => [
+            [
+                'title' => 'Team Members',
+                'route' => route('admin.team'),
+                'icon'  => 'fa-users',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Users',
+                'route' => route('admin.user.index'),
+                'icon'  => 'fa-users',
+                'access_roles' => ['admin'],
+            ],
+            [
+                'title' => 'Deleted Users',
+                'route' => route('admin.user.index', ['type' => 'deleted']),
+                'icon'  => 'fa-user-times',
+                'access_roles' => ['admin'],
+            ],
         ],
-        [
-            'title' => 'Categories',
-            'icon' => 'fa-tags',
-            'route' => route('admin.category.index'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Team Members',
-            'icon'  => 'fa-users',
-            'route' => route('admin.team'),
-            'access_roles' => [],
-        ],
+    ],
 
-        [
-            'title' => 'Enroll Requests',
-            'icon' => 'fa-user-plus',
-            'route' => route('admin.enrollments'),
-            'access_roles' => [],
+    [
+        'title' => 'Applications',
+        'icon'  => 'fa-file',
+        'items' => [
+            [
+                'title' => 'Enroll Requests',
+                'route' => route('admin.enrollments'),
+                'icon'  => 'fa-user-plus',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Job Applications',
+                'route' => route('job_app_admin'),
+                'icon'  => 'fa-briefcase',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Internship Applications',
+                'route' => route('internshp_application.admin'),
+                'icon'  => 'fa-graduation-cap',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Ambassador Applications',
+                'route' => route('admin.ambassador.index'),
+                'icon'  => 'fa-star',
+                'access_roles' => [],
+            ],
         ],
-        [
-            'title' => 'Job Applications',
-            'icon' => 'fa-tags',
-            'route' => route('job_app_admin'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Internship Applications',
-            'icon' => 'fa-tags',
-            'route' => route('internshp_application.admin'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Manage Internship',
-            'icon' => 'fa-tags',
-            'route' => route('internships.index'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Webinar Applications',
-            'icon' => 'fa-tags',
-            'route' => route('admin.webinar_applications.index'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Manage Webinars',
-            'icon' => 'fa-tags',
-            'route' => route('admin.webinar.index'),
-            'access_roles' => [],
-        ],
-        [
-            'title' => 'Ambassador Applications',
-            'icon' => 'fa-tags',
-            'route' => route('admin.ambassador.index'),
-            'access_roles' => [],
-        ],
+    ],
 
-        [
-            'title' => 'Users',
-            'icon' => 'fa-users',
-            'route' => route('admin.user.index'),
-            'access_roles' => ['admin'],
+    [
+        'title' => 'Events',
+        'icon'  => 'fa-calendar',
+        'items' => [
+            [
+                'title' => 'Manage Webinars',
+                'route' => route('admin.webinar.index'),
+                'icon'  => 'fa-video',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Webinar Applications',
+                'route' => route('admin.webinar_applications.index'),
+                'icon'  => 'fa-list',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Blogs',
+                'route' => route('blogger_v_p'),
+                'icon'  => 'fa-list',
+                'access_roles' => [],
+            ],
         ],
+    ],
 
-        [
-            'title' => 'Deleted Users',
-            'icon' => 'fa-user-times',
-            'route' => route('admin.user.index', ['type' => 'deleted']),
-            'access_roles' => ['admin'],
+    [
+        'title' => 'Settings',
+        'icon'  => 'fa-cog',
+        'items' => [
+            [
+                'title' => 'Top Notification',
+                'route' => route('s_info_user'),
+                'icon'  => 'fa-bell',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Manage Internship',
+                'route' => route('internships.index'),
+                'icon'  => 'fa-cogs',
+                'access_roles' => [],
+            ],
         ],
-    ];
-
+    ],
+];
 @endphp
+@foreach ($menuGroups as $gIndex => $group)
+    <li class="nav-item dropdown text-center px-3">
 
-@foreach ($menuItems as $index => $item)
-    @if (empty($item['access_roles'])
-            ? true
-            : in_array(auth()->user()->role, $item['access_roles']) || auth()->user()->is_admin)
-        <li class="nav-item text-center px-3">
-            <!-- Loader -->
-            <div class="py-3 menu-loader{{ $index }} d-none">
-                <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
-                <div class="medium text-muted mt-1">Loading…</div>
-            </div>
+        <a class="navbar-text text-white dropdown-toggle"
+           href="#"
+           id="menuDropdown{{ $gIndex }}"
+           role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">
 
-            <!-- Menu Link -->
-            {{-- <a class="nav-link navbar-text text-white d-none menu-item" --}}
-            <a class="navbar-text text-white d-none menu-item" href="{{ $item['route'] }}"
-                data-index="{{ $index }}">
-                @if (!empty($item['img']))
-                    <img src="{{ asset('img/' . $item['img']) }}" alt="lyskills" class="img-fluid mx-auto d-block"
-                        width="30">
-                @else
-                    <i class="fa {{ $item['icon'] }} d-block mb-1"></i>
-                @endif
-                <small>{{ $item['title'] }}</small>
-            </a>
-        </li>
-    @endif
-@endforeach
-
-<x-super-admin>
-    <li class="nav-item text-center px-3">
-        <a class="navbar-text text-white d-none menu-item" href="{{ route('cron-jobs.index') }}">
-            <i class="fa fa-user-times d-block mb-1"></i>
-            <smal> Cron Jobs </small>
+            <i class="fa {{ $group['icon'] }} d-block mb-1"></i>
+            <small>{{ $group['title'] }}</small>
         </a>
+
+        <div class="dropdown-menu dropdown-menu-right shadow-sm"
+             aria-labelledby="menuDropdown{{ $gIndex }}">
+
+            @foreach ($group['items'] as $index => $item)
+                @if (
+                    empty($item['access_roles']) ||
+                    in_array(auth()->user()->role, $item['access_roles']) ||
+                    auth()->user()->is_admin
+                )
+                    <a class="dropdown-item d-flex align-items-center"
+                       href="{{ $item['route'] }}"
+                       data-index="{{ $index }}">
+
+                        <i class="fa {{ $item['icon'] }} mr-2 text-primary"></i>
+                        {{ $item['title'] }}
+                    </a>
+                @endif
+            @endforeach
+
+        </div>
     </li>
-</x-super-admin>
+@endforeach
+@php
+$menuGroups = [
+    // other groups ...
+
+    [
+        'title' => 'System',
+        'icon'  => 'fa-cogs',
+        'items' => [
+            [
+                'title' => 'Cron Jobs',
+                'icon'  => 'fa-clock',
+                'route' => route('cron-jobs.index'),
+                'access_roles' => ['super-admin'], // 🔐 only super admin
+            ],
+
+            // future items
+            // [
+            //     'title' => 'Queue Monitor',
+            //     'icon'  => 'fa-tasks',
+            //     'route' => route('queue.index'),
+            //     'access_roles' => ['super-admin'],
+            // ],
+        ],
+    ],
+];
+@endphp
+@foreach ($menuGroups as $gIndex => $group)
+    <li class="nav-item dropdown text-center px-3">
+
+        <a class="navbar-text text-white dropdown-toggle"
+           href="#"
+           id="menuDropdown{{ $gIndex }}"
+           role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">
+
+            <i class="fa {{ $group['icon'] }} d-block mb-1"></i>
+            <small>{{ $group['title'] }}</small>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right shadow-sm"
+             aria-labelledby="menuDropdown{{ $gIndex }}">
+
+            @foreach ($group['items'] as $index => $item)
+                @if (
+                    empty($item['access_roles']) ||
+                    in_array(auth()->user()->role, $item['access_roles']) ||
+                    auth()->user()->is_admin
+                )
+                    <a class="dropdown-item d-flex align-items-center"
+                       href="{{ $item['route'] }}"
+                       data-index="{{ $index }}">
+
+                        <i class="fa {{ $item['icon'] }} mr-2 text-primary"></i>
+                        {{ $item['title'] }}
+                    </a>
+                @endif
+            @endforeach
+
+        </div>
+    </li>
+@endforeach

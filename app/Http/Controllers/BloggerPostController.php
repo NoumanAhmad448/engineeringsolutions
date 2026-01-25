@@ -25,13 +25,13 @@ class BloggerPostController extends Controller
     {
         try {
             $setting = Setting::select('isBlog', 'isFaq')->first();
-            if ($setting->isBlog) {
+            // if ($setting->isBlog) {
                 $posts = Post::orderByDesc('created_at')->simplePaginate(10);
                 $title = "posts";
                 return view('bloggers.view_post', compact('title', 'posts', 'setting'));
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             return back();
         }
@@ -41,13 +41,13 @@ class BloggerPostController extends Controller
     {
         try {
             $setting = Setting::select('isBlog')->first();
-            if ($setting->isBlog) {
+            // if ($setting->isBlog) {
 
                 $title = "create_post";
                 return view('bloggers.index', compact('title', 'setting'));
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             return back();
         }
@@ -55,23 +55,23 @@ class BloggerPostController extends Controller
 
     public function savePost(Request $request)
     {
-        $permission = Setting::select('isBlog')->first();
-        if ($permission->isBlog) {
+        // $permission = Setting::select('isBlog')->first();
+        // if ($permission->isBlog) {
 
             $request->validate([
                 'title' => ['required', 'max:1000', new DuplicateTitle],
                 'message' => ['required'],
                 'upload_img' => 'required|image|mimes:jpeg,png,jpg|max:5000',
             ]);
-        }
+        // }
         try {
-            if ($permission->isBlog) {
+            // if ($permission->isBlog) {
 
                 $data = $request->only(['title', 'message']);
                 $img = $request->upload_img;
                 $f_name = $img->getClientOriginalName();
 
-                $path = $this->uploadData->upload($img, $f_name);
+                $path = uploadPhoto($img);
                 $data['f_name'] =  $f_name;
                 $data['upload_img'] = $path;
 
@@ -89,9 +89,9 @@ class BloggerPostController extends Controller
 
 
                 return redirect()->route('blogger_v_p')->with('status', 'post has been saved');
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             if (config("app.debug")) {
                 dd($th->getMessage());
@@ -104,7 +104,7 @@ class BloggerPostController extends Controller
     {
         try {
             $permission = Setting::select('isBlog')->first();
-            if ($permission->isBlog) {
+            // if ($permission->isBlog) {
 
                 $status = $post->status;
 
@@ -116,9 +116,9 @@ class BloggerPostController extends Controller
                 $post->save();
 
                 return redirect()->route('blogger_v_p')->with('status', 'post status has changed');
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             return back();
         }
@@ -146,12 +146,12 @@ class BloggerPostController extends Controller
     {
         try {
             $setting = Setting::select('isBlog')->first();
-            if ($setting->isBlog) {
+            // if ($setting->isBlog) {
                 $title = "e_post";
                 return view('bloggers.edit-post', compact('title', 'post', 'setting'));
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             if (config("app.debug")) {
                 dd($th->getMessage());
@@ -164,8 +164,8 @@ class BloggerPostController extends Controller
     public function updatePost(Request $request, Post $post)
     {
         try {
-            $permission = Setting::select('isBlog')->first();
-            if ($permission->isBlog) {
+            // $permission = Setting::select('isBlog')->first();
+            // if ($permission->isBlog) {
                 $request->validate([
                     'title' => ['required', 'max:1000'],
                     'message' => 'required',
@@ -176,7 +176,7 @@ class BloggerPostController extends Controller
                 $img = $request->upload_img;
                 if ($img) {
                     $f_name = $img->getClientOriginalName();
-                    $path = $this->uploadData->upload($img, $f_name);
+                    $path = uploadPhoto($img);
                     $data['f_name'] =  $f_name;
                     $data['upload_img'] = $path;
                 }
@@ -193,9 +193,9 @@ class BloggerPostController extends Controller
 
 
                 return back()->with('status', 'Post has been updated');
-            } else {
-                return back();
-            }
+            // } else {
+            //     return back();
+            // }
         } catch (\Throwable $th) {
             if (config("app.debug")) {
                 dd($th->getMessage());

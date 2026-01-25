@@ -1,5 +1,7 @@
 <?php
+use App\Http\Controllers\HomeController1;
 
+use App\Http\Controllers\HomeController;
 use App\Features\GuestFeatures;
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -183,13 +185,6 @@ $route->group(function () {
     Route::put('admin/{i}/edit-course-instruction-on-dashboard', [InstructorPayment::class, 'edit'])->name('____edit');
     Route::post('admin/{i}/delete-course-instruction-on-dashboard', [InstructorPayment::class, 'delete'])->name('____delete');
 
-    Route::get('admin/create-course-user-on-dashboard', [UserAnnController::class, 'createInfo'])->name('c_info_user');
-    Route::get('admin/show-course-user-on-dashboard', [UserAnnController::class, 'showInfo'])->name('s_info_user');
-    Route::post('admin/create-course-user-on-dashboard', [UserAnnController::class, 'postInfo'])->name('p_info_user');
-    Route::get('admin/{i}/edit-show-course-user-on-dashboard', [UserAnnController::class, 'showEdit'])->name('show_edit_user');
-    Route::put('admin/{i}/edit-course-user-on-dashboard', [UserAnnController::class, 'edit'])->name('____edit_user');
-    Route::post('admin/{i}/delete-course-user-on-dashboard', [UserAnnController::class, 'delete'])->name('____delete_user');
-
     Route::get('admin/show-bloggers', [BloggerController::class, 'show'])->name('show_blogger___');
 
     Route::put('admin/update-admin-profile/{user}', [CreateSubAdminController::class, 'updateAdmin'])->name('update_admins');
@@ -201,16 +196,6 @@ Route::post('blogger-login', [BloggerController::class, 'login'])->name('blogger
 
 Route::prefix('blogger')->middleware(['blogger', config("middlewares.auth"), config("middlewares.verified")])->group(function () {
     Route::get('/', BloggerHome::class)->name('blogger_home');
-
-    Route::get('show-post', [BloggerPostController::class, 'view'])->name('blogger_v_p');
-    Route::get('create-post', [BloggerPostController::class, 'createPost'])->name('blogger_c_p');
-    Route::post('create-post', [BloggerPostController::class, 'savePost'])->name('blogger_s_p');
-
-    Route::post('post/{post}/change-status', [BloggerPostController::class, 'changeStatus'])->name('blogger_cs_p');
-    Route::delete('post/{post}/delete-post', [BloggerPostController::class, 'delete'])->name('blogger_p_delete');
-
-    Route::get('post/{post}/edit-post', [BloggerPostController::class, 'editPost'])->name('blogger_edit_p');
-    Route::put('post/{post}/update-post', [BloggerPostController::class, 'updatePost'])->name('blogger_update_p');
 
     Route::get('show-faq', [BloggerFaqController::class, 'view'])->name('blogger_v_faq');
     Route::get('create-faq', [BloggerFaqController::class, 'createFaq'])->name('blogger_c_faq');
@@ -332,6 +317,9 @@ Route::get('/course/{slug}', [App\Http\Controllers\Admin\CourseController::class
 Route::get('team/list', [TeamController::class, 'teamList'])
     ->name('team.list');
 
+Route::get('posts', [HomeController::class, 'posts'])->name('all_public_posts');
+
+Route::get('post/{slug}', [HomeController1::class, 'post'])->name('public_posts');
 
 Route::get('enroll/{slug?}', [EnrollController::class, 'index'])
 ->name('enroll.index');

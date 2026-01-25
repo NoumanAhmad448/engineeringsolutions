@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +25,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    <x-top_notification/>
     {{-- Top Info Bar --}}
 <div class="top-info-bar d-none d-lg-block bg-primary text-white py-3">
     <div class="container">
@@ -113,7 +115,7 @@
 
                 {{-- Blogs --}}
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/blogs">Blogs</a>
+                    <a class="nav-link text-black" href="{{ route("all_public_posts") }}">Blogs</a>
                 </li>
 
                 {{-- Studetn Verificaton --}}

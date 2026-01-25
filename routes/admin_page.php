@@ -15,6 +15,11 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserAnnController;
+use App\Http\Livewire\CreateBlogger;
+use App\Http\Controllers\BloggerController;
+use App\Http\Controllers\BloggerPostController;
+
 
 $route = Route::prefix("admin");
 
@@ -155,4 +160,23 @@ $route->group(function () {
 
     Route::get('admin/enrollments', [EnrollController::class, 'adminIndex'])
         ->name('admin.enrollments');
+
+    Route::get('create-course-user-on-dashboard', [UserAnnController::class, 'createInfo'])->name('c_info_user');
+    Route::get('show-course-user-on-dashboard', [UserAnnController::class, 'showInfo'])->name('s_info_user');
+    Route::post('create-course-user-on-dashboard', [UserAnnController::class, 'postInfo'])->name('p_info_user');
+    Route::get('{i}/edit-show-course-user-on-dashboard', [UserAnnController::class, 'showEdit'])->name('show_edit_user');
+    Route::put('{i}/edit-course-user-on-dashboard', [UserAnnController::class, 'edit'])->name('____edit_user');
+    Route::post('{i}/delete-course-user-on-dashboard', [UserAnnController::class, 'delete'])->name('____delete_user');
+
+    Route::get('show-post', [BloggerPostController::class, 'view'])->name('blogger_v_p');
+    Route::get('create-post', [BloggerPostController::class, 'createPost'])->name('blogger_c_p');
+    Route::post('create-post', [BloggerPostController::class, 'savePost'])->name('blogger_s_p');
+
+    Route::post('post/{post}/change-status', [BloggerPostController::class, 'changeStatus'])->name('blogger_cs_p');
+    Route::delete('post/{post}/delete-post', [BloggerPostController::class, 'delete'])->name('blogger_p_delete');
+
+    Route::get('post/{post}/edit-post', [BloggerPostController::class, 'editPost'])->name('blogger_edit_p');
+    Route::put('post/{post}/update-post', [BloggerPostController::class, 'updatePost'])->name('blogger_update_p');
+
+
 });
