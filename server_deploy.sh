@@ -59,7 +59,7 @@ yes | php artisan migrate --force
 
 
 # yes | php artisan db:seed --class=LanguageSeeder
-yes | php artisan db:seed --class=JobTitleSeeder
+# yes | php artisan db:seed --class=JobTitleSeeder
 
 # Clear caches
 php artisan cache:clear && php artisan config:clear && php artisan route:clear
