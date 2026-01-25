@@ -8,8 +8,8 @@ Route::group(['prefix' => 'admin', 'middleware' => [config('middlewares.auth'), 
     Route::get('users/create', [UsrController::class, 'create'])->name('admin.user.create');
     Route::post('users', [UsrController::class, 'store'])->name('admin.user.store');
     Route::get('users/{user}/edit', [UsrController::class, 'edit'])->name('admin.user.edit');
-    Route::put('users/{user}', [UsrController::class, 'update'])->name('admin.user.update');
-    Route::delete('users/{user}', [UsrController::class, 'destroy'])->name('admin.user.destroy');
+    Route::put('users/{user}/update', [UsrController::class, 'update'])->name('admin.user.updated');
+    Route::delete('users/{user}/delete', [UsrController::class, 'destroy'])->name('admin.user.destroy');
 
     // Logs
     Route::get('users/logs', [UsrController::class, 'logs'])->name('admin.user.logs');

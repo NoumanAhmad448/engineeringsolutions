@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryLogController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseDetailController;
-use App\Http\Controllers\Admin\CourseLogController;
+use App\Http\Controllers\CourseLogController;
 use App\Http\Controllers\Admin\WebinarApplicationController;
 use App\Http\Controllers\Admin\WebinarController;
 use App\Http\Controllers\EnrollController;

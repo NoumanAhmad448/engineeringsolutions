@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\CategoryLog;
+use App\Http\Controllers\Controller;
 
 class CategoryLogController extends Controller
 {
