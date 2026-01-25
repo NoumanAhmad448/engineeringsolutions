@@ -14,6 +14,19 @@
             'access_roles' => [],
         ],
         [
+            'title' => 'Team Members',
+            'icon'  => 'fa-users',
+            'route' => route('admin.team'),
+            'access_roles' => [],
+        ],
+
+        [
+            'title' => 'Enroll Requests',
+            'icon' => 'fa-user-plus',
+            'route' => route('admin.enrollments'),
+            'access_roles' => [],
+        ],
+        [
             'title' => 'Job Applications',
             'icon' => 'fa-tags',
             'route' => route('job_app_admin'),

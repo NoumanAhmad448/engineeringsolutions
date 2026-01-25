@@ -23,7 +23,7 @@
                             <td>{{ $app->name }}</td>
                             <td>{{ $app->email }}</td>
                             <td>{{ $app->phone }}</td>
-                            <td>{{ $app->internship->name }}</td>
+                            <td>{{ $app->internship?->name }}</td>
                             <td>{{ $app->created_at->format('d M Y') }}</td>
                         </tr>
                     @endforeach

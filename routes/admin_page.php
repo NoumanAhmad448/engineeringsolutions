@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CourseLogController;
 use App\Http\Controllers\Admin\WebinarApplicationController;
 use App\Http\Controllers\Admin\WebinarController;
+use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\TeamController;
 
 $route = Route::prefix("admin");
 
@@ -135,4 +137,22 @@ $route->group(function () {
     // Admin
     Route::get('/admin/ambassadors', [AmbassadorController::class, 'index'])
         ->name('admin.ambassador.index');
+
+    Route::get('admin/team', [TeamController::class, 'index'])
+        ->name('admin.team');
+
+    Route::post('admin/team/store', [TeamController::class, 'store'])
+        ->name('admin.team.store');
+
+    Route::delete('admin/team/{id}', [TeamController::class, 'delete'])
+        ->name('admin.team.delete');
+
+    Route::get('admin/team/{id}/edit', [TeamController::class, 'edit'])
+        ->name('admin.team.edit');
+
+    Route::post('admin/team/{id}/update', [TeamController::class, 'update'])
+        ->name('admin.team.update');
+
+    Route::get('admin/enrollments', [EnrollController::class, 'adminIndex'])
+        ->name('admin.enrollments');
 });
