@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
       args:
         - APP_ENV='${APP_ENV}'
-    container_name: crm-app
+    container_name: crm-solutions
     image: noumanlaravel/crm-app:latest   # <--- Add this
     volumes:
       # - .:/var/www/html  # Bind mount to sync your application code for local development only
