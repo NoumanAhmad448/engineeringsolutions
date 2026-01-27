@@ -158,6 +158,7 @@ sudo chmod -R 755 /home/nomilyskills/public_html/solutions.burraqengineering.com
 sudo chmod -R 777 /home/nomilyskills/public_html/solutions.burraqengineering.com/storage
 sudo chmod -R 777 /home/nomilyskills/public_html/solutions.burraqengineering.com/bootstrap/cache
 sudo chmod 444 /home/nomilyskills/public_html/solutions.burraqengineering.com/.env
+sudo chmod -R 777 /home/nomilyskills/public_html/crm.burraqengineering.com/storage/framework/cache/data
 
 # Run cron
 # php artisan schedule:run >> /dev/null 2>&1
