@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Enable maintenance mode
-yes | php artisan down --force
+# Enable maintenance mode --force is not available
+yes | php artisan
 
 # Create necessary directories
 mkdir -p /home/nomilyskills/public_html/solutions.burraqengineering.com/storage/app
@@ -11,8 +11,8 @@ mkdir -p /home/nomilyskills/public_html/solutions.burraqengineering.com/storage/
 mkdir -p /home/nomilyskills/public_html/solutions.burraqengineering.com/storage/logs
 mkdir -p /home/nomilyskills/public_html/solutions.burraqengineering.com/bootstrap/cache
 
-# Generate artisan key
-yes | php artisan key:generate --force
+# Generate artisan key --force is not available below
+yes | php artisan key:generate
 
 # Secure .env and other sensitive files
 sudo chmod -R 775 /home/nomilyskills/public_html/solutions.burraqengineering.com/
@@ -143,28 +143,18 @@ nvm use 20.18.3
 # Run in production mode
 /root/.nvm/versions/node/v20.18.3/bin/npm run production
 
-# make sure .env files are same
-# APP_ENV=testing php artisan test --filter EnvFilesConsistencyTest
+# Reset permissions for web server & FTP user
+sudo chown -R nomilyskills:nomilyskills /home/nomilyskills/public_html/crm.burraqengineering.com/
+sudo chmod -R 755 /home/nomilyskills/public_html/crm.burraqengineering.com/
+sudo chmod -R 777 /home/nomilyskills/public_html/crm.burraqengineering.com/storage/
+sudo chmod -R 777 /home/nomilyskills/public_html/crm.burraqengineering.com/storage/framework/cache/data
+sudo chmod -R 777 /home/nomilyskills/public_html/crm.burraqengineering.com/bootstrap/cache
+sudo chmod 444 /home/nomilyskills/public_html/crm.burraqengineering.com/.env
+
 
 php artisan config:cache && php artisan route:cache && php artisan view:cache
 php artisan event:cache && php artisan optimize
-
-# Check project health
-# php artisan health:check --no-notification
-
-# Reset permissions for web server & FTP user
-sudo chown -R nomilyskills:nomilyskills /home/nomilyskills/public_html/solutions.burraqengineering.com/
-sudo chmod -R 755 /home/nomilyskills/public_html/solutions.burraqengineering.com/
-sudo chmod -R 777 /home/nomilyskills/public_html/solutions.burraqengineering.com/storage
-sudo chmod -R 777 /home/nomilyskills/public_html/solutions.burraqengineering.com/bootstrap/cache
-sudo chmod 444 /home/nomilyskills/public_html/solutions.burraqengineering.com/.env
-sudo chmod -R 777 /home/nomilyskills/public_html/crm.burraqengineering.com/storage/framework/cache/data
-
-# Run cron
-# php artisan schedule:run >> /dev/null 2>&1
-
-# TO save all the logs in the the databse table
-# php artisan schedule-monitor:sync
+php artisan cache:clear
 
 # Disable maintenance mode
 php artisan up
