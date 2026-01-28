@@ -2,10 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\CheckUrlAccessibility;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\Log\ClearLogFile;
 
 class Kernel extends ConsoleKernel
 {
@@ -30,6 +28,8 @@ class Kernel extends ConsoleKernel
         $schedule->command("log:clear")->daily();
         $schedule->command("check:url-accessibility")->everyMinute();
         $schedule->command('cron:telescope-prune')->everyMinute();
+        $schedule->command('env:check-consistency')->everyMinute();
+        $schedule->command('app:check-debug')->everyMinute();
     }
 
     /**

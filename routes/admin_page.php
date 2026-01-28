@@ -16,8 +16,6 @@ use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserAnnController;
-use App\Http\Livewire\CreateBlogger;
-use App\Http\Controllers\BloggerController;
 use App\Http\Controllers\BloggerPostController;
 
 

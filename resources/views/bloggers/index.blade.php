@@ -22,8 +22,10 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="message">Message</label>
-            <textarea type="password" class="form-control mb-2" rows="15" id="message" name="message" placeholder="Message">{{ old('message') }}</textarea>
+            <x-html_textarea name="message" :value="old('message')" label="Message"/>
+
+            {{-- <label for="message">Message</label> --}}
+            {{-- <textarea type="password" class="form-control mb-2" rows="15" id="message" name="message" placeholder="Message">{{ old('message') }}</textarea> --}}
             @error('message')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -40,7 +42,7 @@
             <img src="#" alt="Post Image" class="img-fluid d-none img" width="150" />
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary">
+        <button type="submit" class="btn btn-lg btn-primary my-5">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Post
         </button>
     </form>
@@ -81,15 +83,15 @@
         }
     </script>
     <script type="text/javascript">
-        CKEDITOR.replace('message', {
-            filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form'
-        });
+        // CKEDITOR.replace('message', {
+        //     filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+        //     filebrowserUploadMethod: 'form'
+        // });
 
 
 
 
-        // hide message 
+        // hide message
         $('textarea,input').click(vanish);
 
         function vanish() {

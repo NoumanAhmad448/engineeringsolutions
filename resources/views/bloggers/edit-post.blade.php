@@ -24,8 +24,9 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="message">Message</label>
-            <textarea type="password" class="form-control mb-2" rows="15" id="message" name="message" placeholder="Message">{{ $post->message ?? '' }}</textarea>
+            {{-- <label for="message">Message</label> --}}
+            <x-html_textarea name="message" :value="$post->message" label="Message"/>
+            {{-- <textarea type="password" class="form-control mb-2" rows="15" id="message" name="message" placeholder="Message">{{ $post->message ?? '' }}</textarea> --}}
             @error('message')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -41,7 +42,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary">
+        <button type="submit" class="btn btn-lg btn-primary my-5">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Update Post
         </button>
     </form>
@@ -82,9 +83,9 @@
         }
     </script>
     <script type="text/javascript">
-        CKEDITOR.replace('message', {
-            filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form'
-        });
+        // CKEDITOR.replace('message', {
+        //     filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+        //     filebrowserUploadMethod: 'form'
+        // });
     </script>
 @endsection
