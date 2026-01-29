@@ -5,12 +5,6 @@ $menuGroups = [
         'icon'  => 'fa-book',
         'items' => [
             [
-                'title' => 'Courses',
-                'route' => route('admin.course.index'),
-                'icon'  => 'fa-book',
-                'access_roles' => [],
-            ],
-            [
                 'title' => 'Categories',
                 'route' => route('admin.category.index'),
                 'icon'  => 'fa-tags',
@@ -91,12 +85,6 @@ $menuGroups = [
                 'icon'  => 'fa-list',
                 'access_roles' => [],
             ],
-            [
-                'title' => 'Blogs',
-                'route' => route('blogger_v_p'),
-                'icon'  => 'fa-list',
-                'access_roles' => [],
-            ],
         ],
     ],
 
@@ -104,12 +92,6 @@ $menuGroups = [
         'title' => 'Settings',
         'icon'  => 'fa-cog',
         'items' => [
-            [
-                'title' => 'Top Notification',
-                'route' => route('s_info_user'),
-                'icon'  => 'fa-bell',
-                'access_roles' => [],
-            ],
             [
                 'title' => 'Manage Internship',
                 'route' => route('internships.index'),
