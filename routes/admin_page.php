@@ -62,37 +62,6 @@ $route->group(function () {
     Route::delete('course-details/{detail}', [CourseDetailController::class, 'destroy'])
         ->name('admin.courses.details.delete');
 
-
-    // Route::get(
-    //     'admin/course/{course}/logs',
-    //     [CourseLogController::class, 'index']
-    // )->name('admin.course.logs');
-
-    // Route::get(
-    //     'admin/course/{course}/details',
-    //     [CourseDetailController::class, 'index']
-    // )->name('admin.course.detail.index');
-
-    // Route::post(
-    //     'admin/course/{course}/details',
-    //     [CourseDetailController::class, 'store']
-    // )->name('courses.details.store');
-
-    // Route::get(
-    //     'admin/course-detail/{detail}/edit',
-    //     [CourseDetailController::class, 'edit']
-    // )->name('courses.details.edit');
-
-    // Route::put(
-    //     'admin/course-detail/{detail}',
-    //     [CourseDetailController::class, 'update']
-    // )->name('courses.details.update');
-
-    // Route::delete(
-    //     'admin/course-detail/{detail}',
-    //     [CourseDetailController::class, 'delete']
-    // )->name('courses.details.destroy');
-
     Route::post('/upload-image', [ImageUploadController::class, 'upload'])->name('upload.image');
 
     Route::get('/job-applications', [JobApplicationController::class, 'adminIndex'])
@@ -158,23 +127,4 @@ $route->group(function () {
 
     Route::get('admin/enrollments', [EnrollController::class, 'adminIndex'])
         ->name('admin.enrollments');
-
-    // Route::get('create-course-user-on-dashboard', [UserAnnController::class, 'createInfo'])->name('c_info_user');
-    // Route::get('show-course-user-on-dashboard', [UserAnnController::class, 'showInfo'])->name('s_info_user');
-    // Route::post('create-course-user-on-dashboard', [UserAnnController::class, 'postInfo'])->name('p_info_user');
-    // Route::get('{i}/edit-show-course-user-on-dashboard', [UserAnnController::class, 'showEdit'])->name('show_edit_user');
-    // Route::put('{i}/edit-course-user-on-dashboard', [UserAnnController::class, 'edit'])->name('____edit_user');
-    // Route::post('{i}/delete-course-user-on-dashboard', [UserAnnController::class, 'delete'])->name('____delete_user');
-
-    // Route::get('show-post', [BloggerPostController::class, 'view'])->name('blogger_v_p');
-    // Route::get('create-post', [BloggerPostController::class, 'createPost'])->name('blogger_c_p');
-    // Route::post('create-post', [BloggerPostController::class, 'savePost'])->name('blogger_s_p');
-
-    // Route::post('post/{post}/change-status', [BloggerPostController::class, 'changeStatus'])->name('blogger_cs_p');
-    // Route::delete('post/{post}/delete-post', [BloggerPostController::class, 'delete'])->name('blogger_p_delete');
-
-    // Route::get('post/{post}/edit-post', [BloggerPostController::class, 'editPost'])->name('blogger_edit_p');
-    // Route::put('post/{post}/update-post', [BloggerPostController::class, 'updatePost'])->name('blogger_update_p');
-
-
 });
