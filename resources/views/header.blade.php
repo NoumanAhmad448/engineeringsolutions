@@ -206,12 +206,12 @@
                             </div>
                         @endif
                             <div class="dropdown-menu dropdown-menu-right  w-55 mr-4 border" aria-labelledby="user_menu">
-                                    <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="/user_logout">
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-                                    </a>
-                                    <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.category.index') }}">
-                                        <i class="fa fa-book" aria-hidden="true"></i> Courses Categories
-                                    </a>
+                                <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.course.index') }}">
+                                    <i class="fa fa-book" aria-hidden="true"></i> Courses Categories
+                                </a>
+                                <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="/user_logout">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                                </a>
                             </div>
                         </div>
                 @else

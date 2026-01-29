@@ -10,6 +10,12 @@ $menuGroups = [
                 'icon'  => 'fa-tags',
                 'access_roles' => [],
             ],
+            [
+                'title' => 'Courses',
+                'route' => route('admin.course.index'),
+                'icon'  => 'fa-tags',
+                'access_roles' => [],
+            ],
         ],
     ],
 
