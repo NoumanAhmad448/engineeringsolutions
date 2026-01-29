@@ -91,12 +91,6 @@ $menuGroups = [
                 'icon'  => 'fa-list',
                 'access_roles' => [],
             ],
-            [
-                'title' => 'Blogs',
-                'route' => route('blogger_v_p'),
-                'icon'  => 'fa-list',
-                'access_roles' => [],
-            ],
         ],
     ],
 
