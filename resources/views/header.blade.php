@@ -212,6 +212,9 @@
                                     <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.course.index') }}">
                                         <i class="fa fa-book" aria-hidden="true"></i> Courses
                                     </a>
+                                    <a style="font-size: 0.9rem !important" class="pt-2  dropdown-item" href="{{ route('admin.category.index') }}">
+                                        <i class="fa fa-book" aria-hidden="true"></i> Courses Categories
+                                    </a>
                             </div>
                         </div>
                 @else
