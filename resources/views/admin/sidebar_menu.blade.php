@@ -10,6 +10,12 @@ $menuGroups = [
                 'icon'  => 'fa-tags',
                 'access_roles' => [],
             ],
+            [
+                'title' => 'Courses',
+                'route' => route('admin.course.index'),
+                'icon'  => 'fa-tags',
+                'access_roles' => [],
+            ],
         ],
     ],
 
@@ -96,6 +102,12 @@ $menuGroups = [
                 'title' => 'Manage Internship',
                 'route' => route('internships.index'),
                 'icon'  => 'fa-cogs',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Top Notification',
+                'route' => route('s_info_user'),
+                'icon'  => 'fa-bell',
                 'access_roles' => [],
             ],
         ],

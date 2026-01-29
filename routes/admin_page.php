@@ -62,7 +62,6 @@ $route->group(function () {
     Route::delete('course-details/{detail}', [CourseDetailController::class, 'destroy'])
         ->name('admin.courses.details.delete');
 
-
     Route::get(
         'admin/course/{course}/logs',
         [CourseLogController::class, 'index']
