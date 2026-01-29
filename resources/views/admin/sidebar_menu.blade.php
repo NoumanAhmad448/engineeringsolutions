@@ -91,6 +91,12 @@ $menuGroups = [
                 'icon'  => 'fa-list',
                 'access_roles' => [],
             ],
+            [
+                'title' => 'Blogs',
+                'route' => route('blogger_v_p'),
+                'icon'  => 'fa-list',
+                'access_roles' => [],
+            ],
         ],
     ],
 
@@ -102,6 +108,12 @@ $menuGroups = [
                 'title' => 'Manage Internship',
                 'route' => route('internships.index'),
                 'icon'  => 'fa-cogs',
+                'access_roles' => [],
+            ],
+            [
+                'title' => 'Top Notification',
+                'route' => route('s_info_user'),
+                'icon'  => 'fa-bell',
                 'access_roles' => [],
             ],
         ],
