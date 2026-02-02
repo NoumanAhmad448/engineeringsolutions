@@ -23,12 +23,14 @@ $class_name = $name . $label ? str_replace(' ', '_', $label) : "label";
             // width: 100,{
             height: 400, // editor height
             toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
+                ['style', ['style']], // 👈 enables headings (H1–H6)
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['strikethrough']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['link', 'picture']], // only images, no video
+                ['insert', ['picture']], // only images, no video
                 ['view', ['fullscreen', 'codeview']]
             ],
+            styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
             callbacks: {
                 onImageUpload: function(files, element) {
                     // files is an array of selected files
